@@ -8,7 +8,6 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
     private val elements: Array<E> = arrayOfNulls<Any>(size) as Array<E>
     private var head: Int = -1
     private var tail: Int = -1
-    private var currentSize: Int = 0
 
     override fun head(): E {
         if (isEmpty()) {
@@ -22,17 +21,22 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
             throw QueueUnderFlowException("Queue is empty")
         }
         val element: E = elements[head]
-        head = (head+1) % elements.size
-        currentSize--
+
+        if (head == tail) {
+            head = -1
+            tail = -1
+        } else {
+            head = (head+1) % elements.size
+        }
         return element
     }
 
     override fun isEmpty(): Boolean {
-        return currentSize == 0
+        return head == -1 && tail == -1
     }
 
     override fun isFull(): Boolean {
-        return currentSize == elements.size
+        return (tail+1) % elements.size == head
     }
 
     override fun enqueue(element: E) {
@@ -40,10 +44,11 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
             throw QueueOverFlowException("Queue is full")
         }
         if (isEmpty()) {
-            head = (head+1) % elements.size
+            head = 0
+            tail = 0
+        } else {
+            tail = (tail+1) % elements.size
         }
-        tail = (tail+1) % elements.size
         elements[tail] = element
-        currentSize++
     }
 }
