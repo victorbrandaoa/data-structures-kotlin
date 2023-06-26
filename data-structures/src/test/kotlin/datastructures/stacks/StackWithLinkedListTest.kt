@@ -77,8 +77,17 @@ class StackWithLinkedListTest {
     fun topAfterPop() {
         stack.push(1)
         stack.push(2)
+        assertEquals(2, stack.top())
         assertEquals(2, stack.pop())
         assertEquals(1, stack.top())
+    }
+
+    @Test
+    fun topAfterPush() {
+        stack.push(1)
+        assertEquals(1, stack.top())
+        stack.push(2)
+        assertEquals(2, stack.top())
     }
 
     @Test
@@ -87,4 +96,23 @@ class StackWithLinkedListTest {
         assertEquals(1, stack.pop())
     }
 
+    @Test
+    fun isEmptyAfterPop() {
+        stack.push(1)
+        assertFalse(stack.isEmpty())
+        stack.pop()
+        assertTrue(stack.isEmpty())
+    }
+
+    @Test
+    fun isFullAfterPop() {
+        stack.push(1)
+        stack.push(2)
+        stack.push(3)
+        stack.push(4)
+        stack.push(5)
+        assertTrue(stack.isFull())
+        stack.pop()
+        assertFalse(stack.isFull())
+    }
 }
