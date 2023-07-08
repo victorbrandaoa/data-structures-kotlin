@@ -10,17 +10,17 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
     private var tail: Int = -1
 
     override fun head(): E {
-        if (isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+        when {
+            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            else -> return elements[head]
         }
-        return elements[head]
     }
 
     override fun dequeue(): E {
         if(isEmpty()) {
             throw QueueUnderFlowException("Queue is empty")
         }
-        val element: E = elements[head]
+        val element = elements[head]
 
         if (head == tail) {
             head = -1

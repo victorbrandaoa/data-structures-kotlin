@@ -11,19 +11,17 @@ class StackWithTwoQueuesImpl<E>(size: Int) : Stack<E> {
     private var auxiliarQueue: Queue<E> = QueueWithLinkedListImpl(size)
 
     override fun top(): E {
-        if (isEmpty()) {
-            throw StackUnderFlowException("stack is empty")
+        when {
+            isEmpty() -> throw StackUnderFlowException("stack is empty")
+            else -> return primaryQueue.head()
         }
-
-        return primaryQueue.head()
     }
 
     override fun pop(): E {
-        if (isEmpty()) {
-            throw StackUnderFlowException("stack is empty")
+        when {
+            isEmpty() -> throw StackUnderFlowException("stack is empty")
+            else -> return primaryQueue.dequeue()
         }
-
-        return primaryQueue.dequeue()
     }
 
     override fun isEmpty(): Boolean {

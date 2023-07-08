@@ -9,17 +9,17 @@ class QueueWithLinkedListImpl<E>(private val size: Int) : Queue<E> {
     private val elements: LinkedList<E> = LinkedList<E>()
 
     override fun head(): E {
-        if (isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+        when {
+            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            else -> return elements.first
         }
-        return elements.first
     }
 
     override fun dequeue(): E {
-        if (isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+        when {
+            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            else -> return elements.removeFirst()
         }
-        return elements.removeFirst()
     }
 
     override fun isEmpty(): Boolean {
@@ -31,10 +31,10 @@ class QueueWithLinkedListImpl<E>(private val size: Int) : Queue<E> {
     }
 
     override fun enqueue(element: E) {
-        if (isFull()) {
-            throw QueueOverFlowException("Queue is full")
+        when {
+            isFull() -> throw QueueOverFlowException("Queue is full")
+            else -> elements.addLast(element)
         }
-        elements.addLast(element)
     }
 
 }

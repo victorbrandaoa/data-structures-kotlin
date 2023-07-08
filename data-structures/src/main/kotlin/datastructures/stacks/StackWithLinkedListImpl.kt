@@ -9,17 +9,17 @@ class StackWithLinkedListImpl<E>(private val size: Int) : Stack<E> {
     private val elements: LinkedList<E> = LinkedList()
 
     override fun top(): E {
-        if (isEmpty()) {
-            throw StackUnderFlowException("Stack is empty")
+        when {
+            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            else -> return elements.first
         }
-        return elements.first
     }
 
     override fun pop(): E {
-        if (isEmpty()) {
-            throw StackUnderFlowException("Stack is empty")
+        when {
+            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            else -> return elements.removeFirst()
         }
-        return elements.removeFirst()
     }
 
     override fun isEmpty(): Boolean {
@@ -31,10 +31,9 @@ class StackWithLinkedListImpl<E>(private val size: Int) : Stack<E> {
     }
 
     override fun push(element: E) {
-        if (isFull()) {
-            throw StackOverFlowException("Stack is full")
-        } else if (element != null) {
-            elements.addFirst(element)
+        when {
+            isFull() -> throw StackOverFlowException("Stack is full")
+            else -> elements.addFirst(element)
         }
     }
 

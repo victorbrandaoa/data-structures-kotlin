@@ -9,17 +9,17 @@ class QueueWithArrayImpl<E>(size: Int) : Queue<E> {
     private var nextPos: Int = 0
 
     override fun head(): E {
-        if (isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+        when {
+            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            else -> return elements[0]
         }
-        return elements[0]
     }
 
     override fun dequeue(): E {
         if (isEmpty()) {
             throw QueueUnderFlowException("Queue is empty")
         }
-        val element: E = elements[0]
+        val element = elements[0]
         shiftLeft()
         nextPos--
         return element
@@ -34,10 +34,10 @@ class QueueWithArrayImpl<E>(size: Int) : Queue<E> {
     }
 
     override fun enqueue(element: E) {
-        if (isFull()) {
-            throw QueueOverFlowException("Queue is full")
+        when {
+            isFull() -> throw QueueOverFlowException("Queue is full")
+            else -> elements[nextPos++] = element
         }
-        elements[nextPos++] = element
     }
 
     private fun shiftLeft() {
