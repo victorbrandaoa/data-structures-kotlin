@@ -1,3 +1,3 @@
 package datastructures.deque.exceptions
 
-class DequeOverFlowException(message: String) : Exception(message)
+class DequeOverFlowException() : RuntimeException("deque is full")

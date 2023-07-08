@@ -10,14 +10,14 @@ class StackWithLinkedListImpl<E>(private val size: Int) : Stack<E> {
 
     override fun top(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return elements.first
         }
     }
 
     override fun pop(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return elements.removeFirst()
         }
     }
@@ -32,7 +32,7 @@ class StackWithLinkedListImpl<E>(private val size: Int) : Stack<E> {
 
     override fun push(element: E) {
         when {
-            isFull() -> throw StackOverFlowException("Stack is full")
+            isFull() -> throw StackOverFlowException()
             else -> elements.addFirst(element)
         }
     }

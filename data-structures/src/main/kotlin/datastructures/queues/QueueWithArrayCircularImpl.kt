@@ -11,14 +11,14 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
 
     override fun head(): E {
         when {
-            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            isEmpty() -> throw QueueUnderFlowException()
             else -> return elements[head]
         }
     }
 
     override fun dequeue(): E {
         if(isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+            throw QueueUnderFlowException()
         }
         val element = elements[head]
 
@@ -41,7 +41,7 @@ class QueueWithArrayCircularImpl<E>(size: Int) : Queue<E> {
 
     override fun enqueue(element: E) {
         if (isFull()) {
-            throw QueueOverFlowException("Queue is full")
+            throw QueueOverFlowException()
         }
         if (isEmpty()) {
             head = 0

@@ -10,14 +10,14 @@ class QueueWithLinkedListImpl<E>(private val size: Int) : Queue<E> {
 
     override fun head(): E {
         when {
-            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            isEmpty() -> throw QueueUnderFlowException()
             else -> return elements.first
         }
     }
 
     override fun dequeue(): E {
         when {
-            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            isEmpty() -> throw QueueUnderFlowException()
             else -> return elements.removeFirst()
         }
     }
@@ -32,7 +32,7 @@ class QueueWithLinkedListImpl<E>(private val size: Int) : Queue<E> {
 
     override fun enqueue(element: E) {
         when {
-            isFull() -> throw QueueOverFlowException("Queue is full")
+            isFull() -> throw QueueOverFlowException()
             else -> elements.addLast(element)
         }
     }

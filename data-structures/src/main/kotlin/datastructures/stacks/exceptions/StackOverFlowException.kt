@@ -1,3 +1,3 @@
 package datastructures.stacks.exceptions
 
-class StackOverFlowException(message: String) : Exception(message)
+class StackOverFlowException() : RuntimeException("stack is full")

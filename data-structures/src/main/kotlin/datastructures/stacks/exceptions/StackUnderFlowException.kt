@@ -1,3 +1,3 @@
 package datastructures.stacks.exceptions
 
-class StackUnderFlowException(message: String) : Exception(message)
+class StackUnderFlowException() : RuntimeException("stack is empty")

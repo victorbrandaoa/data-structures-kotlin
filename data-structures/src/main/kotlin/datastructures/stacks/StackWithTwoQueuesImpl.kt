@@ -12,14 +12,14 @@ class StackWithTwoQueuesImpl<E>(size: Int) : Stack<E> {
 
     override fun top(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return primaryQueue.head()
         }
     }
 
     override fun pop(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return primaryQueue.dequeue()
         }
     }
@@ -34,7 +34,7 @@ class StackWithTwoQueuesImpl<E>(size: Int) : Stack<E> {
 
     override fun push(element: E) {
         if (isFull()) {
-            throw StackOverFlowException("stack is full")
+            throw StackOverFlowException()
         }
         auxiliarQueue.enqueue(element)
         while(!primaryQueue.isEmpty()) {

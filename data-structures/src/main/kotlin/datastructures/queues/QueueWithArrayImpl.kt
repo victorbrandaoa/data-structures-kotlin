@@ -10,14 +10,14 @@ class QueueWithArrayImpl<E>(size: Int) : Queue<E> {
 
     override fun head(): E {
         when {
-            isEmpty() -> throw QueueUnderFlowException("Queue is empty")
+            isEmpty() -> throw QueueUnderFlowException()
             else -> return elements[0]
         }
     }
 
     override fun dequeue(): E {
         if (isEmpty()) {
-            throw QueueUnderFlowException("Queue is empty")
+            throw QueueUnderFlowException()
         }
         val element = elements[0]
         shiftLeft()
@@ -35,7 +35,7 @@ class QueueWithArrayImpl<E>(size: Int) : Queue<E> {
 
     override fun enqueue(element: E) {
         when {
-            isFull() -> throw QueueOverFlowException("Queue is full")
+            isFull() -> throw QueueOverFlowException()
             else -> elements[nextPos++] = element
         }
     }

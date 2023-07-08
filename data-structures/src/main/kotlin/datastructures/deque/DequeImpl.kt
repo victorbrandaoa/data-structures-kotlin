@@ -10,42 +10,42 @@ class DequeImpl<E>(private val size: Int) : Deque<E> {
 
     override fun pushFront(element: E) {
         when {
-            isFull() -> throw DequeOverFlowException("Deque is full")
+            isFull() -> throw DequeOverFlowException()
             else -> elements.addFirst(element)
         }
     }
 
     override fun pushBack(element: E) {
         when {
-            isFull() -> throw DequeOverFlowException("Deque is full")
+            isFull() -> throw DequeOverFlowException()
             else -> elements.addLast(element)
         }
     }
 
     override fun popFront(): E {
         when {
-            isEmpty() -> throw DequeUnderFlowException("Deque is empty")
+            isEmpty() -> throw DequeUnderFlowException()
             else -> return elements.removeFirst()
         }
     }
 
     override fun popBack(): E {
         when {
-            isEmpty() -> throw DequeUnderFlowException("Deque is empty")
+            isEmpty() -> throw DequeUnderFlowException()
             else -> return elements.removeLast()
         }
     }
 
     override fun front(): E {
         when {
-            isEmpty() -> throw DequeUnderFlowException("Deque is empty")
+            isEmpty() -> throw DequeUnderFlowException()
             else -> return elements.first
         }
     }
 
     override fun back(): E {
         when {
-            isEmpty() -> throw DequeUnderFlowException("Deque is empty")
+            isEmpty() -> throw DequeUnderFlowException()
             else -> return elements.last
         }
     }

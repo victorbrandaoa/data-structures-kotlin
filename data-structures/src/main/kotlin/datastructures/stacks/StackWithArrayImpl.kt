@@ -10,14 +10,14 @@ class StackWithArrayImpl<E>(size: Int) : Stack<E> {
 
     override fun top(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return elements[top]
         }
     }
 
     override fun pop(): E {
         when {
-            isEmpty() -> throw StackUnderFlowException("Stack is empty")
+            isEmpty() -> throw StackUnderFlowException()
             else -> return elements[top--]
         }
     }
@@ -32,7 +32,7 @@ class StackWithArrayImpl<E>(size: Int) : Stack<E> {
 
     override fun push(element: E) {
         when {
-            isFull() -> throw StackOverFlowException("Stack is full")
+            isFull() -> throw StackOverFlowException()
             else -> elements[++top] = element
         }
     }

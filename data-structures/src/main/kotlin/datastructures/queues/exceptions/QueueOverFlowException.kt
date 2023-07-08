@@ -1,3 +1,3 @@
 package datastructures.queues.exceptions
 
-class QueueOverFlowException(message: String) : Exception(message)
+class QueueOverFlowException() : RuntimeException("queue is full")

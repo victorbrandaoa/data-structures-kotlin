@@ -1,3 +1,3 @@
 package datastructures.queues.exceptions
 
-class QueueUnderFlowException(message: String) : Exception(message)
+class QueueUnderFlowException() : RuntimeException("queue is empty")
