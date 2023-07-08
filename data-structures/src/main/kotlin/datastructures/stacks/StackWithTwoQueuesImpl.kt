@@ -44,8 +44,6 @@ class StackWithTwoQueuesImpl<E>(size: Int) : Stack<E> {
     }
 
     private fun swapQueues() {
-        val temp = primaryQueue
-        primaryQueue = auxiliarQueue
-        auxiliarQueue = temp
+        primaryQueue = auxiliarQueue.also { auxiliarQueue = primaryQueue }
     }
 }
