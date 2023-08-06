@@ -109,14 +109,14 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     private fun shiftLeft(index: Int) {
-        for (i in index until size) {
+        for (i in index until elements.size-1) {
             elements[i] = elements[i+1]
         }
     }
 
     private fun shiftRight(index: Int) {
-        for (i in index until size) {
-            elements[i+1] = elements[i]
+        for (i in elements.size-1 downTo index+1) {
+            elements[i] = elements[i-1]
         }
     }
 
@@ -139,7 +139,7 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     private fun validateIndex(index: Int) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index >= elements.size) {
             throw ArrayIndexOutOfBoundsException()
         }
     }
