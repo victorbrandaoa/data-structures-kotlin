@@ -86,7 +86,7 @@ class ArrayListRecursiveImpl<E> : List<E> {
         return recursiveContains(0, element)
     }
 
-    private fun recursiveContains(index: Int, element: E): Boolean {
+    private tailrec fun recursiveContains(index: Int, element: E): Boolean {
         if (index == size) {
             return false
         }
@@ -100,7 +100,7 @@ class ArrayListRecursiveImpl<E> : List<E> {
         return recursiveIndexOf(0, element)
     }
 
-    private fun recursiveIndexOf(index: Int, element: E): Int {
+    private tailrec fun recursiveIndexOf(index: Int, element: E): Int {
         if (index == size) {
             return -1
         }
@@ -118,14 +118,14 @@ class ArrayListRecursiveImpl<E> : List<E> {
         }
     }
 
-    private fun shiftLeft(index: Int) {
+    private tailrec fun shiftLeft(index: Int) {
         if (index < size) {
             elements[index] = elements[index+1]
             shiftLeft(index + 1)
         }
     }
 
-    private fun shiftRight(index: Int) {
+    private tailrec fun shiftRight(index: Int) {
         if (index < size) {
             elements[index+1] = elements[index]
             shiftRight(index + 1)
@@ -143,7 +143,7 @@ class ArrayListRecursiveImpl<E> : List<E> {
         elements = recursiveCopy(0, newElements)
     }
 
-    private fun recursiveCopy(index: Int, acc: Array<E>): Array<E> {
+    private tailrec fun recursiveCopy(index: Int, acc: Array<E>): Array<E> {
         if (index == size) {
             return acc
         }
