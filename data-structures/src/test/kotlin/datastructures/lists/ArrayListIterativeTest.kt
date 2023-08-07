@@ -100,6 +100,13 @@ class ArrayListIterativeTest {
     }
 
     @Test
+    fun testAddAtIndexZeroEmptyList() {
+        list.addAtIndex(0, 5)
+        assertEquals(5, list.getLast())
+        assertEquals(5, list.getFirst())
+    }
+
+    @Test
     fun testAddAtIndexFullList() {
         list.addLast(1)
         list.addLast(2)
