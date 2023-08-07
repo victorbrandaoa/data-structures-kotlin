@@ -93,11 +93,10 @@ class ArrayListIterativeTest {
     }
 
     @Test
-    fun testAddAtIndexEmptyList() {
-        list.addAtIndex(3, 5)
-        assertNull(list.getLast())
-        assertNull(list.getFirst())
-        assertEquals(5, list.get(3))
+    fun testAddAtIndexOutOfBoundsGreaterThanSize() {
+        assertThrows(ArrayIndexOutOfBoundsException::class.java) {
+            list.addAtIndex(3, 5)
+        }
     }
 
     @Test
