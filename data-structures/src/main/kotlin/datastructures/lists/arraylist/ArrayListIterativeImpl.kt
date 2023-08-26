@@ -19,7 +19,8 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     override fun addLast(element: E) {
-        addAtIndex(size, element)
+        ensureCapacity(size + 1)
+        elements[size++] = element
     }
 
     override fun addAtIndex(index: Int, element: E) {
@@ -138,7 +139,7 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     private fun validateIndex(index: Int) {
-        if (index < 0 || index > size) {
+        if (index < 0 || index >= elements.size) {
             throw ArrayIndexOutOfBoundsException()
         }
     }

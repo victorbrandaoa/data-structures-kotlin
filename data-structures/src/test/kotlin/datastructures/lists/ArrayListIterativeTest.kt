@@ -95,7 +95,7 @@ class ArrayListIterativeTest {
     @Test
     fun testAddAtIndexOutOfBoundsGreaterThanSize() {
         assertThrows(ArrayIndexOutOfBoundsException::class.java) {
-            list.addAtIndex(3, 5)
+            list.addAtIndex(5, 5)
         }
     }
 
