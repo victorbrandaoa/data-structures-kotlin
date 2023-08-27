@@ -24,9 +24,11 @@ class ArrayListRecursiveImpl<E> : List<E> {
     }
 
     override fun addAtIndex(index: Int, element: E) {
-        validateIndex(index)
+        if (index < 0 || index >= elements.size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         ensureCapacity(size + 1)
-        shiftRight(index)
+        shiftRight(elements.size - 1, index + 1)
         elements[index] = element
         size++
     }
@@ -36,12 +38,16 @@ class ArrayListRecursiveImpl<E> : List<E> {
     }
 
     override fun set(index: Int, element: E) {
-        validateIndex(index)
+        if (index < 0 || index >= size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         elements[index] = element
     }
 
     override fun removeByIndex(index: Int): E {
-        validateIndex(index)
+        if (index < 0 || index >= size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         val element = elements[index]
         shiftLeft(index)
         size--
@@ -53,11 +59,16 @@ class ArrayListRecursiveImpl<E> : List<E> {
     }
 
     override fun removeLast(): E {
+        if (isEmpty()) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         return elements[--size]
     }
 
     override fun get(index: Int): E {
-        validateIndex(index)
+        if ((index < 0 || index >= elements.size) || size == 0) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         return elements[index]
     }
 
@@ -125,10 +136,10 @@ class ArrayListRecursiveImpl<E> : List<E> {
         }
     }
 
-    private tailrec fun shiftRight(index: Int) {
-        if (index < size) {
-            elements[index+1] = elements[index]
-            shiftRight(index + 1)
+    private tailrec fun shiftRight(startIndex: Int, stopIndex: Int) {
+        if (startIndex >= stopIndex) {
+            elements[startIndex] = elements[startIndex-1]
+            shiftRight(startIndex - 1, stopIndex)
         }
     }
 
@@ -151,9 +162,4 @@ class ArrayListRecursiveImpl<E> : List<E> {
         return recursiveCopy(index + 1, acc)
     }
 
-    private fun validateIndex(index: Int) {
-        if (index < 0 || index >= size) {
-            throw ArrayIndexOutOfBoundsException()
-        }
-    }
 }
