@@ -24,7 +24,9 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     override fun addAtIndex(index: Int, element: E) {
-        validateIndex(index)
+        if (index < 0 || index >= elements.size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         ensureCapacity(size + 1)
         shiftRight(index)
         elements[index] = element
@@ -36,12 +38,16 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     override fun set(index: Int, element: E) {
-        validateIndex(index)
+        if (index < 0 || index >= size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         elements[index] = element
     }
 
     override fun removeByIndex(index: Int): E {
-        validateIndex(index)
+        if (index < 0 || index >= size) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         val element = elements[index]
         shiftLeft(index)
         size--
@@ -53,11 +59,16 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     override fun removeLast(): E {
+        if (isEmpty()) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         return elements[--size]
     }
 
     override fun get(index: Int): E {
-        validateIndex(index)
+        if ((index < 0 || index >= elements.size) || size == 0) {
+            throw ArrayIndexOutOfBoundsException()
+        }
         return elements[index]
     }
 
@@ -132,15 +143,9 @@ class ArrayListIterativeImpl<E> : List<E> {
     }
 
     private fun copy(resultArray: Array<E>): Array<E> {
-        for (i in elements.indices) {
+        for (i in 0 until size) {
             resultArray[i] = elements[i]
         }
         return resultArray
-    }
-
-    private fun validateIndex(index: Int) {
-        if (index < 0 || index >= elements.size) {
-            throw ArrayIndexOutOfBoundsException()
-        }
     }
 }
