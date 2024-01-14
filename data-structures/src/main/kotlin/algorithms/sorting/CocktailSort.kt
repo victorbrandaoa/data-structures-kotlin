@@ -2,12 +2,6 @@ package algorithms.sorting
 
 class CocktailSort {
     companion object {
-        private fun swap(array: IntArray, i: Int, j: Int) {
-            val tmp = array[i]
-            array[i] = array[j]
-            array[j] = tmp
-        }
-
         fun sort(array: IntArray) {
             var swapped = true
 
